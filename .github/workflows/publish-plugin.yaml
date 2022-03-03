@@ -15,13 +15,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      - name: Cache Gradle Caches
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/**.gradle*', '**/gradle/wrapper/gradle-wrapper.properties', '**/libs.versions.toml') }}
       - name: Run Gradle tasks
         uses: gradle/gradle-build-action@v2
         with:
