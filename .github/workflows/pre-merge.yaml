@@ -31,12 +31,12 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: templateExample --message="Test Run" --tag=CI
-        if: success()
-        # And we verify that the output of the file is correct.
-      - name: Verify the plugin output
-        run: grep -Fxq "[CI] Test Run" ./example/build/template-example.txt
-        if: success()
-
+      - name: Upload output
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test artifacts
+          path: './example/build/template-example.txt'
+          if-no-files-found: error
       - name: Stop Gradle
         uses: gradle/gradle-build-action@v2
         with:
